@@ -1,3 +1,9 @@
 jupyter
 streamlit
 ipykernel
+langchain_openai
+watchdog
+langchain_community
+python-dotenv 
+faiss-cpu
+streamlit_chat 

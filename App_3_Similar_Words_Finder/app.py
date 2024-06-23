@@ -1,11 +1,11 @@
 #Allows you to use Streamlit, a framework for building interactive web applications.
 #It provides functions for creating UIs, displaying data, and handling user inputs.
 import streamlit as st
+from langchain.document_loaders.csv_loader import CSVLoader
 
 
 #This module provides a way to interact with the operating system, such as accessing environment variables, working with files
 #and directories, executing shell commands, etc
-import os
 
 #Helps us generate embeddings
 #An embedding is a vector (list) of floating point numbers. The distance between two vectors measures their relatedness. 
@@ -47,7 +47,6 @@ st.header("Hey, Ask me something & I will give out similar things")
 embeddings = OpenAIEmbeddings()
 
 #The below snippet helps us to import CSV file data for our tasks
-from langchain.document_loaders.csv_loader import CSVLoader
 loader = CSVLoader(file_path='myData.csv', csv_args={
     'delimiter': ',',
     'quotechar': '"',
@@ -56,7 +55,6 @@ loader = CSVLoader(file_path='myData.csv', csv_args={
 
 #Assigning the data inside the csv to our variable here...
 data = loader.load()
-
 #Display the data
 print(data)
 
@@ -67,12 +65,10 @@ def get_text():
     input_text = st.text_input("You: ", key= input)
     return input_text
 
-
 user_input=get_text()
 submit = st.button('Find similar Things')  
 
 if submit:
-    
     #If the button is clicked, the below snippet will fetch us the similar text
     docs = db.similarity_search(user_input)
     print(docs)

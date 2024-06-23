@@ -20,9 +20,9 @@ if 'API_Key' not in st.session_state:
 st.set_page_config(page_title="Chat GPT Clone", page_icon=":robot_face:")
 st.markdown("<h1 style='text-align: center;'>How can I assist you? </h1>", unsafe_allow_html=True)
 
-
 st.sidebar.title("😎")
 st.session_state['API_Key']= st.sidebar.text_input("What's your API key?",type="password")
+
 summarise_button = st.sidebar.button("Summarise the conversation", key="summarise")
 if summarise_button:
     summarise_placeholder = st.sidebar.write("Nice chatting with you my friend ❤️:\n\n"+st.session_state['conversation'].memory.buffer)
@@ -32,7 +32,6 @@ if summarise_button:
 #os.environ["OPENAI_API_KEY"] = ""
 
 def getresponse(userInput, api_key):
-
     if st.session_state['conversation'] is None:
 
         llm = OpenAI(
